@@ -2,14 +2,14 @@ body {
   margin:0;
 }
 
-.container {
+.conteudo {
   background-color:white;
   height:100%;
   width:100%;
   font-size:1rem;
 }
 
-.image {
+.imagem {
   display:flex;
   gap:5rem;
 }
