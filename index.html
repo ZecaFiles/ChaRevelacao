@@ -16,8 +16,10 @@
 
       </br>
 
-      <div id="timer">
-        
+      <div id="timer"></div>
+
+      <div id="revelation" style="display:none">
+        <h1>Parabéns</h1>
       </div>
 
       <!-- <div class="imagem">
@@ -28,6 +30,16 @@
       </div> -->
 
     </div>
+
+    <input type="hidden" id="day" />
+    <input type="hidden" id="hour" />
+    <input type="hidden" id="minute" />
+
+    <div id="contador_dias"></div>
+    <div id="contador_horas"></div>
+    <div id="contador_minutos"></div>
+    <div id="contador_segundos"></div>
+    <div id="contador_milisegundos"></div>
     
     <script>
 
@@ -37,65 +49,98 @@
         fetch('config/data_evento.json')
           .then(response => response.json())
           .then(response => {
-            document.getElementById("title").innerHTML = response.DATA_REVELACAO;
+            document.getElementById("day").innerHTML = response.DIA;
+            document.getElementById("hour").innerHTML = response.HORA;
+            document.getElementById("minute").innerHTML = response.MINUTO;
+            document.getElementById("revelation").innerHTML = response.DATA_REVELACAO;
           })
 
          // configure timer
          Timer();
       }
 
-      function Timer () {
-        var tempo = 5;
+      var YY = 2022;
+      var MM = 10;
+      var SS = 0;
+      var DD = document.getElementById("day");
+      var HH = document.getElementById("hour");
+      var MI = document.getElementById("minute");
 
-        if ((tempo - 1) >= -1) {
+      function Timer() {
+        var hoje = new Date();
+        var futuro = new Date(YY,MM-1,DD,HH,MI,SS);
+        
+        console.log(futuro)
+        var ms = parseInt((futuro - hoje)/1);
+        var ss = parseInt(ms / 1000);
+        var mm = parseInt(ss / 60);
+        var hh = parseInt(mm / 60);
+        var dd = parseInt(hh / 24);
+            
+        ms = ms - (ss * 1000);
+        ss = ss - (mm * 60);
+        mm = mm - (hh * 60);
+        hh = hh - (dd * 24);
 
-            // Pega a parte inteira dos minutos
-            var min = parseInt(tempo / 60);
-            // Calcula os segundos restantes
-            var seg = tempo % 60;
-
-            // Formata o número menor que dez, ex: 08, 07, ...
-            if (min < 10) {
-                min = "0" + min;
-                min = min.substr(0, 2);
-            }
-            if (seg <= 9) {
-                seg = "0" + seg;
-            }
-
-            // Cria a variável para formatar no estilo hora/cronômetro
-            horaImprimivel = '00:' + min + ':' + seg;
-            //JQuery pra setar o valor
-            document.getElementById("timer").innerHTML = horaImprimivel;
-
-            // Define que a função será executada novamente em 1000ms = 1 segundo
-            setTimeout('Timer()', 1000);
-
-            // diminui o tempo
-            tempo--;
-          }
+        console.log(dd)
+        console.log(hh)
+        console.log(mm)
+            
+        /*var faltam = '';
+        faltam += (dd && dd > 1) ? dd+' dias, ' : (dd==1 ? '1 dia, ' : '');
+        faltam += (toString(hh).length) ? hh+' hr, ' : '';
+        faltam += (toString(mm).length) ? mm+' min e ' : '';
+        faltam += ss+' seg';*/
+                  
+        if (dd+hh+mm+ss > 0) {
+          document.getElementById('contador_dias').innerHTML = (toString(dd).length) ? dd+' dias' : '';
+          document.getElementById('contador_horas').innerHTML = (toString(hh).length) ? hh+'h' : '';
+          document.getElementById('contador_minutos').innerHTML = (toString(mm).length) ? mm+'m' : '';
+          document.getElementById('contador_segundos').innerHTML = ss+'s';
+          // document.getElementById('contador_milisegundos').innerHTML = ms;
+          setTimeout(Timer,1);
         }
+      }
 
-      //   function startTimer(duration, display) {
+      // function Timer () {
 
-      //         var timer = duration, minutes, seconds;
-              
-      //         setInterval(function () {
-      //             minutes = parseInt(timer / 60, 10);
-      //             seconds = parseInt(timer % 60, 10);
-      //             minutes = minutes < 10 ? "0" + minutes : minutes;
-      //             seconds = seconds < 10 ? "0" + seconds : seconds;
-      //             display.textContent = minutes + ":" + seconds;
-      //             if (--timer < 0) {
-      //                 timer = duration;
-      //             }
-      //         }, 1000);
-      //     }
 
-      //     var duration = 60 * 1; // Converter para segundos
-      //     display = document.querySelector('#timer'); // selecionando o timer
-      //     startTimer(duration, display); // iniciando o timer
-      // };
+      //   if ((tempo - 1) >= -1) {
+
+      //       // Pega a parte inteira dos minutos
+      //       var min = parseInt(tempo / 60);
+
+      //       // Calcula os segundos restantes
+      //       var seg = tempo % 60;
+
+      //       // Formata o número menor que dez, ex: 08, 07, ...
+      //       if (min < 10) {
+      //           min = "0" + min;
+      //           min = min.substr(0, 2);
+      //       }
+      //       if (seg <= 9) {
+      //           seg = "0" + seg;
+      //       }
+
+      //       // Cria a variável para formatar no estilo hora/cronômetro
+      //       horaImprimivel = '00:' + min + ':' + seg;
+
+      //       //set timer atualizado
+      //       document.getElementById("timer").innerHTML = horaImprimivel;
+
+      //       // Define que a função será executada novamente em 1000ms = 1 segundo
+      //       setTimeout('Timer()', 1000);
+
+      //       // diminui o tempo
+      //       tempo--;
+
+      //       console.log(tempo)
+      //   }
+      //   else
+      //   {
+      //       document.getElementById("revelation").style.display = 'block'
+      //   }
+      // }
     </script>
     
   </body>
