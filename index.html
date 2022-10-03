@@ -1,17 +1,17 @@
+<!DOCTYPE html>
 <html>
+  <title>Chá Revelação - Bru & Sid</title>
 
-  <script src="scripts/script.js"></script>
-  <link rel="stylesheet" type="text/css" href="style/style.css" />
+  <body onload="TimerConfiguration()">
+    <link rel="stylesheet" type="text/css" href="style/style.css" />
 
-  <body>
-
-    <div class="conteudo">
+    <div class="content">
       
       </br>
       
-      <h2 id="titulo">
+      <div id="title">
         Teste
-      </h2>
+      </div>
 
       </br>
 
@@ -23,6 +23,14 @@
       </div>
 
     </div>
+    
+    <script>
+      function TimerConfiguration() {
+        fetch("./config/data_evento.")
+             .then(results => results.json())
+             .then(console.log);
+      }
+    </script>
     
   </body>
 
