@@ -51,11 +51,14 @@
         fetch('config/data_evento.json')
           .then(response => response.json())
           .then(response => {
+            
             console.log(response)
             document.getElementById("day").value = response.DIA;
             document.getElementById("hour").value = response.HORA;
             document.getElementById("minute").value = response.MINUTO;
             document.getElementById("sexo").value = response.SEXO;
+            
+            Timer(response.DIA, response.HORA, response.MINUTO)
           })
           .then(Timer())
       }
@@ -66,10 +69,7 @@
         var YY = 2022;
         var MM = 10;
         var SS = 0;
-        var DD = document.getElementById("day").value;
-        var HH = document.getElementById("hour").value;
-        var MI = document.getElementById("minute").value;
-
+        
         console.log(DD)
         console.log(HH)
         console.log(MI)
