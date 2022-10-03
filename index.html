@@ -44,29 +44,29 @@
     <script>
 
       function Initialize() {
-
         // configure parameter json
         fetch('config/data_evento.json')
           .then(response => response.json())
           .then(response => {
-            document.getElementById("day").innerHTML = response.DIA;
-            document.getElementById("hour").innerHTML = response.HORA;
-            document.getElementById("minute").innerHTML = response.MINUTO;
-            document.getElementById("revelation").innerHTML = response.DATA_REVELACAO;
+            document.getElementById("day").value = response.DIA;
+            document.getElementById("hour").value = response.HORA;
+            document.getElementById("minute").value = response.MINUTO;
+            document.getElementById("revelation").value = response.DATA_REVELACAO;
           })
 
          // configure timer
          Timer();
       }
 
-      var YY = 2022;
-      var MM = 10;
-      var SS = 0;
-      var DD = document.getElementById("day");
-      var HH = document.getElementById("hour");
-      var MI = document.getElementById("minute");
-
       function Timer() {
+
+        var YY = 2022;
+        var MM = 10;
+        var SS = 0;
+        var DD = document.getElementById("day").value;
+        var HH = document.getElementById("hour").value;
+        var MI = document.getElementById("minute").value;
+        
         var hoje = new Date();
         var futuro = new Date(YY,MM-1,DD,HH,MI,SS);
         
