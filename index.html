@@ -26,9 +26,9 @@
     
     <script>
       function TimerConfiguration() {
-        fetch("./config/data_evento.")
-             .then(results => results.json())
-             .then(console.log);
+        var eventValues = null;
+        fetch('config/data_evento.json').then(eventValues => results.json());
+        console.log(eventValues);
       }
     </script>
     
