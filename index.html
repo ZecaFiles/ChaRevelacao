@@ -10,7 +10,7 @@
       </br>
       
       <div id="title">
-        Teste
+        Aguardando...
       </div>
 
       </br>
@@ -26,7 +26,11 @@
     
     <script>
       function TimerConfiguration() {
-        fetch('config/data_evento.json').then(results => results.json()).then(console.log);
+        fetch('config/data_evento.json')
+          .then(response => response.json())
+          .then(response => {
+            document.getElementById("title").innerHTML = response.DATA_REVELACAO;
+          })
       }
     </script>
     
