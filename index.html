@@ -2,8 +2,9 @@
 <html>
   <title>Chá Revelação - Bru & Sid</title>
 
-  <body onload="TimerConfiguration()">
+  <body onload="Initialize()">
     <link rel="stylesheet" type="text/css" href="style/style.css" />
+    <link rel="icon" type="image/x-icon" href="/image/favicon.png">
 
     <div class="content">
       
@@ -15,23 +16,86 @@
 
       </br>
 
-      <div class="imagem">
-        <img src="./image/zeca1.jpeg" width="170" height="170" />
-        <img src="./image/zeca1.jpeg" width="170" height="170" />
-        <img src="./image/zeca1.jpeg" width="170" height="170" />
-        <img src="./image/zeca1.jpeg" width="170" height="170" />
+      <div id="timer">
+        
       </div>
+
+      <!-- <div class="imagem">
+        <img src="./image/zeca1.jpeg" width="170" height="170" />
+        <img src="./image/zeca1.jpeg" width="170" height="170" />
+        <img src="./image/zeca1.jpeg" width="170" height="170" />
+        <img src="./image/zeca1.jpeg" width="170" height="170" />
+      </div> -->
 
     </div>
     
     <script>
-      function TimerConfiguration() {
+
+      function Initialize() {
+
+        // configure parameter json
         fetch('config/data_evento.json')
           .then(response => response.json())
           .then(response => {
             document.getElementById("title").innerHTML = response.DATA_REVELACAO;
           })
+
+         // configure timer
+         Timer();
       }
+
+      function Timer () {
+        var tempo = 5;
+
+        if ((tempo - 1) >= -1) {
+
+            // Pega a parte inteira dos minutos
+            var min = parseInt(tempo / 60);
+            // Calcula os segundos restantes
+            var seg = tempo % 60;
+
+            // Formata o número menor que dez, ex: 08, 07, ...
+            if (min < 10) {
+                min = "0" + min;
+                min = min.substr(0, 2);
+            }
+            if (seg <= 9) {
+                seg = "0" + seg;
+            }
+
+            // Cria a variável para formatar no estilo hora/cronômetro
+            horaImprimivel = '00:' + min + ':' + seg;
+            //JQuery pra setar o valor
+            document.getElementById("timer").innerHTML = horaImprimivel;
+
+            // Define que a função será executada novamente em 1000ms = 1 segundo
+            setTimeout('Timer()', 1000);
+
+            // diminui o tempo
+            tempo--;
+          }
+        }
+
+      //   function startTimer(duration, display) {
+
+      //         var timer = duration, minutes, seconds;
+              
+      //         setInterval(function () {
+      //             minutes = parseInt(timer / 60, 10);
+      //             seconds = parseInt(timer % 60, 10);
+      //             minutes = minutes < 10 ? "0" + minutes : minutes;
+      //             seconds = seconds < 10 ? "0" + seconds : seconds;
+      //             display.textContent = minutes + ":" + seconds;
+      //             if (--timer < 0) {
+      //                 timer = duration;
+      //             }
+      //         }, 1000);
+      //     }
+
+      //     var duration = 60 * 1; // Converter para segundos
+      //     display = document.querySelector('#timer'); // selecionando o timer
+      //     startTimer(duration, display); // iniciando o timer
+      // };
     </script>
     
   </body>
