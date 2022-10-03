@@ -34,6 +34,7 @@
     <input type="hidden" id="day" />
     <input type="hidden" id="hour" />
     <input type="hidden" id="minute" />
+    <input type="hidden" id="sexo" />
 
     <div id="contador_dias"></div>
     <div id="contador_horas"></div>
@@ -53,9 +54,11 @@
             document.getElementById("day").value = response.DIA;
             document.getElementById("hour").value = response.HORA;
             document.getElementById("minute").value = response.MINUTO;
-            document.getElementById("revelation").value = response.DATA_REVELACAO;
+            document.getElementById("revelation").value = response.sexo;
           })
           .then(Timer())
+
+          Timer();
       }
 
       function Timer() {
