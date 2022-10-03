@@ -49,36 +49,40 @@
         fetch('config/data_evento.json')
           .then(response => response.json())
           .then(response => {
+            console.log(response)
             document.getElementById("day").value = response.DIA;
             document.getElementById("hour").value = response.HORA;
             document.getElementById("minute").value = response.MINUTO;
             document.getElementById("revelation").value = response.DATA_REVELACAO;
           })
-
-         // configure timer
-         Timer();
-         
+          .then(Timer())
       }
 
       function Timer() {
 
+        // parametros de data
         var YY = 2022;
         var MM = 10;
         var SS = 0;
         var DD = document.getElementById("day").value;
         var HH = document.getElementById("hour").value;
         var MI = document.getElementById("minute").value;
+
+        console.log(DD)
+        console.log(HH)
+        console.log(MI)
         
+        // cria a data final
         var hoje = new Date();
         var futuro = new Date(YY,MM-1,DD,HH,MI,SS);
         
-        console.log(futuro)
         var ms = parseInt((futuro - hoje)/1);
         var ss = parseInt(ms / 1000);
         var mm = parseInt(ss / 60);
         var hh = parseInt(mm / 60);
         var dd = parseInt(hh / 24);
             
+        // converte unidades de data
         ms = ms - (ss * 1000);
         ss = ss - (mm * 60);
         mm = mm - (hh * 60);
@@ -99,8 +103,11 @@
           document.getElementById('contador_horas').innerHTML = (toString(hh).length) ? hh+'h' : '';
           document.getElementById('contador_minutos').innerHTML = (toString(mm).length) ? mm+'m' : '';
           document.getElementById('contador_segundos').innerHTML = ss+'s';
-          // document.getElementById('contador_milisegundos').innerHTML = ms;
+
           setTimeout(Timer,1);
+        }
+        else{
+          document.getElementById("revelation").style.display = 'block'
         }
       }
 
