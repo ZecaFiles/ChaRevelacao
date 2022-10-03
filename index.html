@@ -57,9 +57,7 @@
             document.getElementById("minute").value = response.MINUTO;
             document.getElementById("sexo").value = response.SEXO;
           })
-
-        
-        Timer();
+          .then(Timer())
       }
 
       function Timer() {
