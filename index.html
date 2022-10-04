@@ -13,8 +13,17 @@
     <link rel="icon" type="image/x-icon"   href="/image/favicon.ico">
 
     <div class="container">
+
+      <img src="image/zeca1.jpeg" class="zeca" />
+      <!-- <img src="image/zeca2.jpeg" class="zeca" /> -->
       
-      <h1 id="headline">Contagem Regressiva</h1>
+      <h1 id="headline">
+        Contagem Regressiva...
+      </h1>
+
+      <div id="subMessage">
+        Já já vamos saber :)
+      </div>
 
       <div id="masculino" style="display:none" class="revelation">
         PARABÉNS, É UM MENINO
@@ -54,10 +63,9 @@
           })
 
         // document.getElementById("day").value = 3;
-        // document.getElementById("hour").value = 21;
-        // document.getElementById("minute").value = 45;
-        // document.getElementById("sexo").value = "M";
-        
+        // document.getElementById("hour").value = 22;
+        // document.getElementById("minute").value = 14;
+        // document.getElementById("sexo").value = "f";
         // Timer()
       }
 
@@ -83,7 +91,9 @@
         var mm = parseInt(ss / 60);
         var hh = parseInt(mm / 60);
         var dd = parseInt(hh / 24);
-            
+        
+        console.log(ms, ss, mm,hh, dd)
+
         // converte unidades de data
         ms = ms - (ss * 1000);
         ss = ss - (mm * 60);
@@ -101,11 +111,24 @@
           setTimeout(Timer,1);
         }
         else{
-          // fim da contagem regressiva - mostra a mensagem de revelação do sexo
-            document.getElementById("headline").innerHTML = "VAI FICAR SEM SABER, TROXA"
+            // fim da contagem regressiva - mostra a mensagem de revelação do sexo
+
+            var sexoRevelado = document.getElementById("sexo").value
+
+            if (sexoRevelado.toUpperCase().trim() == "M")
+            {
+                document.getElementById("headline").innerHTML = "Parabéns, é um MENINO"
+                document.body.style.backgroundColor = "#ADD8E6 ";
+            }
+
+            if (sexoRevelado.toUpperCase().trim() == "F")
+            {
+                document.getElementById("headline").innerHTML = "Parabéns, é uma MENINA"
+                document.body.style.backgroundColor = "#FFB6C1";
+            }
 
             document.getElementById("countdown").style.display = 'none'
-            
+            document.getElementById("subMessage").style.display = 'none'
         }
       }
 
