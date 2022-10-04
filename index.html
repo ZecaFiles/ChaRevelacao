@@ -33,22 +33,17 @@
       function Initialize() {
         
         // configure parameter json
-        // fetch('config/data_evento.json')
-        //   .then(response => response.json())
-        //   .then(response => {
+        fetch('config/data_evento.json')
+          .then(response => response.json())
+          .then(response => {
             
-        //     document.getElementById("day").value = response.DIA;
-        //     document.getElementById("hour").value = response.HORA;
-        //     document.getElementById("minute").value = response.MINUTO;
-        //     document.getElementById("sexo").value = response.SEXO;
+            document.getElementById("day").value = response.DIA;
+            document.getElementById("hour").value = response.HORA;
+            document.getElementById("minute").value = response.MINUTO;
+            document.getElementById("sexo").value = response.SEXO;
             
-        //     Timer()
-        //   })
-
-        document.getElementById("day").value = 3;
-        document.getElementById("hour").value = 22;
-        document.getElementById("minute").value = 30;
-        document.getElementById("sexo").value = "M";
+            Timer()
+          })
         
         Timer()
       }
@@ -82,19 +77,6 @@
         mm = mm - (hh * 60);
         hh = hh - (dd * 24);
 
-        // console.log(dd)
-        // console.log(hh)
-        // console.log(mm)
-            
-        // mensagem da contagem regressiva
-        // var faltam = '';
-        // faltam += (dd && dd > 1) ? dd+' dias, ' : (dd==1 ? '1 dia, ' : '');
-        // if (hh > 0) {
-        //   faltam += (toString(hh).length) ? hh+' horas, ' : '';
-        // }         
-        // faltam += (toString(mm).length) ? mm+' minutos e ' : '';
-        // faltam += ss+' segundos';
-
         // se a data for maior que zero, mostra a contagem regressiva
         if (dd+hh+mm+ss > 0) {
           document.getElementById('day').innerHTML = (toString(dd).length) ? dd : '';
@@ -102,8 +84,6 @@
           document.getElementById('minute').innerHTML = (toString(mm).length) ? mm : '';
           document.getElementById('second').innerHTML = ss;
 
-          // document.getElementById('timer').innerHTML = faltam;
-                          
           setTimeout(Timer,1);
         }
         else{
