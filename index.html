@@ -16,6 +16,14 @@
       
       <h1 id="headline">Contagem Regressiva</h1>
 
+      <div id="masculino" style="display:none" class="revelation">
+        PARABÉNS, É UM MENINO
+      </div>
+
+      <div id="feminino" style="display:none" class="revelation">
+        PARABÉNS, É UMA MENINA
+      </div>
+
       <input type="hidden" id="sexo" />
 
       <div id="countdown">
@@ -44,6 +52,11 @@
             
             Timer()
           })
+
+        // document.getElementById("day").value = 3;
+        // document.getElementById("hour").value = 21;
+        // document.getElementById("minute").value = 26;
+        // document.getElementById("sexo").value = "M";
         
         Timer()
       }
@@ -77,6 +90,7 @@
         mm = mm - (hh * 60);
         hh = hh - (dd * 24);
 
+        console.log(dd+hh+mm+ss)
         // se a data for maior que zero, mostra a contagem regressiva
         if (dd+hh+mm+ss > 0) {
           document.getElementById('day').innerHTML = (toString(dd).length) ? dd : '';
@@ -88,7 +102,10 @@
         }
         else{
           // fim da contagem regressiva - mostra a mensagem de revelação do sexo
-          document.getElementById("revelation").style.display = 'block'
+            document.getElementById("headline").innerHTML = "VAI FICAR SEM SABER, TROXA"
+
+            document.getElementById("countdown").style.display = 'none'
+            
         }
       }
 
